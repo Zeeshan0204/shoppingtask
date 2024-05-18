@@ -30,8 +30,28 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text('CartList'),
+      appBar:  AppBar(
+        centerTitle: true,
+        elevation: 0,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context, true);
+          },
+          icon: const Icon(
+            Icons.arrow_back_outlined,
+            color: Colors.black,
+            size: 28,
+          ),
+        ),
+
+        title: Text(
+          "Cart",
+          style: const TextStyle(
+              fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black),
+          textAlign: TextAlign.center,
+        ),
+        backgroundColor: Colors.white,
+
       ),
       body: Column(
         children: [
@@ -66,6 +86,7 @@ class _CartScreenState extends State<CartScreen> {
 
 
                         if(snapshot.hasError){
+                          print("SnapError: ${snapshot.error}");
 
                           return const SizedBox();
                         }else{

@@ -94,9 +94,11 @@ class DatabaseHelper {
   }
   Future<String> getTotalPriceFromDatabase() async {
     Database db = await instance.database;
-    List<Map<String, dynamic>> result =
-    await db.rawQuery('SELECT SUM(price) AS total FROM cart_table');
+    List<Map<String, dynamic>> result = await db.rawQuery('SELECT SUM(price) AS total FROM cart_table');
 
-    return result.first['total']??"0.0";
+    // If the result is null, we return "0"
+    String total = result.first['total'] != null ? result.first['total'].toString() : "0";
+
+    return total;
   }
 }
